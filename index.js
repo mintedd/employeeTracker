@@ -2,6 +2,7 @@ const express = require('express');
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
+const db = require('./config/connection')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -9,18 +10,6 @@ const app = express();
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// Connect to database
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        // MySQL username,
-        user: 'root',
-        // MySQL password
-        password: 'windyspider',
-        database: 'employees_db'
-    },
-    console.log(`Connected to the employees_db database.`)
-);
 
 function init() {
     inquirer.prompt([
@@ -55,7 +44,7 @@ function init() {
                     addDept();
                     break;
                 default:
-                    break;
+                    db.end();
             }
         })
 
@@ -63,22 +52,29 @@ function init() {
 
 
 const employees = () => {
-//just show the table
+    //just show the table
+    db.query(`SELECT * FROM employee`, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        console.table(result);
+    });
+    init();
 };
 
 const addEmployee = () => {
-//prompt "what is the employees first name" -input
-//prompt "what is the employees last name" -input
-//prompt "what is the employees role" -list
-// ['Engineering', 'Finance', 'Legal', 'Sales']
-//prompt "who is the employees manager" -list of all employees and none
-//console.log "Added ______ to the database"
+    //prompt "what is the employees first name" -input
+    //prompt "what is the employees last name" -input
+    //prompt "what is the employees role" -list
+    // ['Engineering', 'Finance', 'Legal', 'Sales']
+    //prompt "who is the employees manager" -list of all employees and none
+    //console.log "Added ______ to the database"
 };
 
 const updateEmployee = () => {
-//prompt "which employees role would you like to update" -list
-//prompt "which role would you like to assign the selected employee to" -list
-//console.log "Updated ______ role in the database"
+    //prompt "which employees role would you like to update" -list
+    //prompt "which role would you like to assign the selected employee to" -list
+    //console.log "Updated ______ role in the database"
 
 };
 
@@ -87,11 +83,11 @@ const roles = () => {
 };
 
 const addRole = () => {
-//prompt "what is the name of the role" -input
-//prompt "what is the salary of the role" (only numbers) -input
-//prompt "which department does the role belong to" -list
-// ['Engineering', 'Finance', 'Legal', 'Sales']
-//console.log "Added ______ to the database"
+    //prompt "what is the name of the role" -input
+    //prompt "what is the salary of the role" (only numbers) -input
+    //prompt "which department does the role belong to" -list
+    // ['Engineering', 'Finance', 'Legal', 'Sales']
+    //console.log "Added ______ to the database"
 };
 
 const dept = () => {
@@ -99,8 +95,8 @@ const dept = () => {
 };
 
 const addDept = () => {
-//prompt "what is the name of the department" -input
-//console.log "Added ______ to the database"
+    //prompt "what is the name of the department" -input
+    //console.log "Added ______ to the database"
 };
 
 
