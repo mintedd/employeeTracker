@@ -16,8 +16,10 @@
     "url": "https://github.com/mintedd/employeeTracker/issues"
   },
   "homepage": "https://github.com/mintedd/employeeTracker#readme",
-  "devDependencies": {
+  "dependencies": {
+    "console.table": "^0.10.0",
     "express": "^4.18.2",
+    "inquirer": "8.2.4",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.20"
   }
