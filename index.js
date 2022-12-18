@@ -31,7 +31,7 @@ function init() {
             choices: ['View all employees', 'Add employee', 'Update employee role', 'View all roles', 'Add role', 'View all departments', 'Add department', 'Quit']
         },
     ])
-        .then((userChoice) => {
+        .then((userChoice) => { //need to create all these functions
             switch (userChoice.questions) {
                 case "View all employees":
                     employees();
@@ -60,6 +60,50 @@ function init() {
         })
 
 };
+
+
+const employees = () => {
+//just show the table
+};
+
+const addEmployee = () => {
+//prompt "what is the employees first name" -input
+//prompt "what is the employees last name" -input
+//prompt "what is the employees role" -list
+// ['Engineering', 'Finance', 'Legal', 'Sales']
+//prompt "who is the employees manager" -list of all employees and none
+//console.log "Added ______ to the database"
+};
+
+const updateEmployee = () => {
+//prompt "which employees role would you like to update" -list
+//prompt "which role would you like to assign the selected employee to" -list
+//console.log "Updated ______ role in the database"
+
+};
+
+const roles = () => {
+
+};
+
+const addRole = () => {
+//prompt "what is the name of the role" -input
+//prompt "what is the salary of the role" (only numbers) -input
+//prompt "which department does the role belong to" -list
+// ['Engineering', 'Finance', 'Legal', 'Sales']
+//console.log "Added ______ to the database"
+};
+
+const dept = () => {
+
+};
+
+const addDept = () => {
+//prompt "what is the name of the department" -input
+//console.log "Added ______ to the database"
+};
+
+
 app.use((req, res) => {
     res.status(404).end();
 });
