@@ -9,8 +9,7 @@ const db = mysql.createConnection(
     host: 'localhost',
     dialect: 'mysql',
     port: 3306
-  }
-)
+  })
 
 db.connect((err) => {
   if (err) {

@@ -63,12 +63,74 @@ const employees = () => {
 };
 
 const addEmployee = () => {
-    //prompt "what is the employees first name" -input
-    //prompt "what is the employees last name" -input
-    //prompt "what is the employees role" -list
-    // ['Engineering', 'Finance', 'Legal', 'Sales']
-    //prompt "who is the employees manager" -list of all employees and none
-    //console.log "Added ______ to the database"
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstName',
+            message: 'What is the employees first name?',
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'What is the employees last name?',
+        },
+    ])
+        .then(res => {
+            let first_name= res.firstName
+            let last_name= res.lastName
+
+            db.promise().query()
+                .then((res) => {
+                    let roles = res
+                    const roleChoices = roles.map(({ id, title }) => ({
+                        name: title,
+                        value: id
+                    }));
+                })
+
+
+        })
+    prompt({
+        type: 'list',
+        name: 'employeeRole',
+        message: 'What is the employees role?',
+        choices: roleChoices
+    })
+        .then(res => {
+            let roleId = res.roleId;
+
+            db.promise().query()
+                .then((res) => {
+                    let roles = res
+                    const roleChoices = roles.map(({ id, title }) => ({
+                        name: title,
+                        value: id
+                    }));
+                })
+            managerChoices.unshift({ name: "None", value: null });
+
+
+        })
+    prompt({
+        type: "list",
+        name: "managerId",
+        message: "Who is the employee's manager?",
+        choices: managerChoices
+    })
+        .then(res => {
+            let employee = {
+                manager_id: res.managerId,
+                role_id: roleId,
+                first_name: firstName,
+                last_name: lastName
+            }
+
+            db.promise().query(employee);
+        })
+        .then(() => console.log(
+            `Added ${firstName} ${lastName} to the database`
+        ))
+        .then(() => init())
 };
 
 const updateEmployee = () => {
@@ -79,7 +141,13 @@ const updateEmployee = () => {
 };
 
 const roles = () => {
-
+    db.query(`SELECT * FROM roles`, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        console.table(result);
+    });
+    init();
 };
 
 const addRole = () => {
@@ -91,11 +159,27 @@ const addRole = () => {
 };
 
 const dept = () => {
-
+    db.query(`SELECT * FROM department`, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        console.table(result);
+    });
+    init();
 };
 
 const addDept = () => {
     //prompt "what is the name of the department" -input
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'department',
+            message: 'What is the name of the department',
+        },
+    ])
+        .then((ans) => {
+
+        })
     //console.log "Added ______ to the database"
 };
 
