@@ -2,7 +2,7 @@ const express = require('express');
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
-const db = require('./config/connection')
+const db = require('./db/connection')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,6 +10,8 @@ const app = express();
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+init();
 
 function init() {
     inquirer.prompt([
@@ -76,8 +78,8 @@ const addEmployee = () => {
         },
     ])
         .then(res => {
-            let first_name= res.firstName
-            let last_name= res.lastName
+            let first_name = res.firstName
+            let last_name = res.lastName
 
             db.promise().query()
                 .then((res) => {
@@ -191,5 +193,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-
-init();
