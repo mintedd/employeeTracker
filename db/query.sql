@@ -7,7 +7,7 @@ FROM departments
 
 -- view all roles
 -- job title, role id, the department that role belongs to, and the salary for that role
-SELECT role.title, role.id, department.name, role.salary
+SELECT roles.title, roles.id, departments.name, roles.salary
 FROM roles
 JOIN departments ON roles.departments_id = departments_id
 
