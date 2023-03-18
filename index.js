@@ -186,7 +186,7 @@ const addRole = () => {
                     db.query(`INSERT INTO role (title, salary, department_id) VALUES ('${roleName}', '${roleSalary}', '${departmentId}')`, (err, res) => {
                         if (err) throw err;
 
-                        viewRoles();
+                        viewAllRoles();
                     });
                 });
             });
@@ -207,7 +207,7 @@ const addDepartment = () => {
             db.query(`INSERT INTO department (department_name) VALUES ('${departmentName}')`, (err, res) => {
                 if (err) throw err;
             })
-            viewDepartments();
+            viewAllDepartments();
         });
 };
 
