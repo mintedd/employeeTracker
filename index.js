@@ -2,6 +2,8 @@ const express = require("express");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const db = require('./db/connection');
+const logo = require("asciiart-logo");
+
 
 // const PORT = process.env.PORT || 3003;
 // const app = express();
@@ -9,7 +11,13 @@ const db = require('./db/connection');
 // // Express middleware
 // app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
+init()
 
+function init() {
+    const logoText = logo({ name: "Employee Tracker" }).render();
+
+    console.log(logoText);
+}
 
 db.connect(error => {
     if (error) {
