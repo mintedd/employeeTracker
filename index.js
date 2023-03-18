@@ -4,13 +4,6 @@ const inquirer = require("inquirer");
 const db = require('./db/connection');
 const logo = require("asciiart-logo");
 
-
-// const PORT = process.env.PORT || 3003;
-// const app = express();
-
-// // Express middleware
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
 init()
 
 function init() {
@@ -251,11 +244,8 @@ const updateEmployeeRole = () => {
                         .then(roleAnswer => {
                             const roleId = roleAnswer.role;
 
-                            //Updates emloyee role
                             db.query(`UPDATE employee SET role_id = ? WHERE id = ?`, [roleId, employeeId], (err, res) => {
                                 if (err) throw err;
-                                console.log(chalk.bgCyan(`Congrats! You have updated the employee role!`));
-                                //once done, prompts user again
                                 viewAllEmployees();
                             });
                         });
@@ -264,10 +254,3 @@ const updateEmployeeRole = () => {
     });
 }
 
-// app.use((req, res) => {
-//     res.status(404).end();
-// });
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
-// });
