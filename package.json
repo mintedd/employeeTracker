@@ -1,27 +1,29 @@
 {
-  "name": "employeetracker",
-  "version": "1.0.0",
-  "description": "view and manage the departments, roles, and employees",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mintedd/employeeTracker.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mintedd/employeeTracker/issues"
-  },
-  "homepage": "https://github.com/mintedd/employeeTracker#readme",
-  "dependencies": {
-    "console.table": "^0.10.0",
-    "express": "^4.18.2",
-    "inquirer": "8.2.4",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.20",
-    "dotenv": "^8.2.0"
+    "name": "employeetracker",
+    "version": "1.0.0",
+    "description": "view and manage the departments, roles, and employees",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+          "seed": "node index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mintedd/employeeTracker.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/mintedd/employeeTracker/issues"
+    },
+    "homepage": "https://github.com/mintedd/employeeTracker#readme",
+    "dependencies": {
+      "console.table": "^0.10.0",
+      "express": "^4.18.2",
+      "inquirer": "8.2.4",
+      "mysql2": "^2.3.3",
+      "nodemon": "^2.0.20",
+      "dotenv": "^8.2.0"
+    }
   }
-}
+  
